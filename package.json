@@ -1,0 +1,25 @@
+{
+  "name": "no-sql-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/desertpython/no-sql-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/desertpython/no-sql-api/issues"
+  },
+  "homepage": "https://github.com/desertpython/no-sql-api#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "moment": "^2.29.0",
+    "mongoose": "^5.10.7"
+  }
+}
