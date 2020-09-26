@@ -20,6 +20,7 @@ const reactionSchema = new Schema({
         get: createdAtVal => moment(createdAtVal).format('MMM DD, YYYY [at] hh:mm a')
     },
 });
+module.exports = reactionSchema;
 
 // Schema Settings
 

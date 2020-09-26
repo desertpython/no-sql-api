@@ -22,12 +22,16 @@ const UserSchema = new Schema(
                 return re.test(String(email).toLowerCase());
             }
         },
-        thoughts: {
-            type: [_id]
-            // array of id values referecing Thooughts model
-        },
-        friends: {
+        thoughts: [Thoughts],
+            // array of id values referecing Thoughts model
+        friends: [User],
             // Array of _id values referencing the User model (self-reference)
-        }
     }
-)
+);
+
+UserSchema.virtual('friendCount').get(function() {
+    return this.friends.length;
+  });
+
+//   Create a virtual called friendCount that retrieves the length of the user's friends array field on query.
+

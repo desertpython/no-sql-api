@@ -1,6 +1,7 @@
 
 const {Schema, model} = require('mongoose');
 const moment = require('moment');
+const Reaction = require('./Reaction');
 
 const ThoughtsSchema = new Schema({
     thoughtText: {
@@ -24,10 +25,13 @@ const ThoughtsSchema = new Schema({
         type: String,
         required: true,
     },
-    reactions: {
-        // Array of nested documents created with the reactionSchema
-    }
+    reactions: [Reaction],
 });
+
+ThoughtsSchema.virtual('reactionCount').get(function() {
+    return this.reactions.length;
+  });
+
 
 // Schema Settings
 
