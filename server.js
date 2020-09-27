@@ -8,7 +8,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-// app.use(require('./routes')); commenting so it won't error out yet
+app.use(require('./routes/api'));
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/noSqlApi', {
   useFindAndModify: false,
@@ -20,3 +20,6 @@ mongoose.set('debug', true);
 
 app.listen(PORT, () => console.log(`🌍 Connected on localhost:${PORT}`));
 
+app.get("/", function (req, res) {
+    res.send('test');
+})

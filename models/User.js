@@ -4,6 +4,7 @@
 // Create a virtual called friendCount that retrieves the length of the user's friends array field on query.
 
 const {Schema, model} = require('mongoose');
+const Thoughts  = require('./Thoughts')
 // may need const Thoughts or Reaction
 // const moment
 
@@ -22,9 +23,19 @@ const UserSchema = new Schema(
                 return re.test(String(email).toLowerCase());
             }
         },
-        thoughts: [Thoughts],
+        thoughts: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Thoughts'
+            }
+        ],
             // array of id values referecing Thoughts model
-        friends: [User],
+        friends: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'User'
+            }
+        ],
             // Array of _id values referencing the User model (self-reference)
     }
 );
@@ -35,3 +46,5 @@ UserSchema.virtual('friendCount').get(function() {
 
 //   Create a virtual called friendCount that retrieves the length of the user's friends array field on query.
 
+const User = model('User', UserSchema)
+module.exports = User;
