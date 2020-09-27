@@ -58,7 +58,7 @@ const UserController = {
             .then(dbUserData => {
                 if (!dbUserData) {
                     res.status(404).json({
-                        message: 'No user found with this id!'
+                        message: 'No users found with this id!'
                     });
                     return;
                 }
@@ -75,7 +75,7 @@ const UserController = {
             .then(dbUserData => {
                 if (!dbUserData) {
                     res.status(404).json({
-                        message: 'No pizza found with this id!'
+                        message: 'No users found with this id!'
                     });
                     return;
                 }

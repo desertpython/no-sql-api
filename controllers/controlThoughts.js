@@ -75,7 +75,7 @@ const thoughtController = {
             .then(dbThoughtData => {
                 if (!dbThoughtData) {
                     res.status(404).json({
-                        message: 'No pizza found with this id!'
+                        message: 'No thoughts found with this id!'
                     });
                     return;
                 }
