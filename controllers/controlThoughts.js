@@ -21,9 +21,9 @@ const thoughtController = {
                 res.sendStatus(400);
             });
     },
-    getThoughtsById({
+    getThoughtsById(
         params
-    }, res) {
+    , res) {
         Thoughts.findOne({
                 _id: params.id
             })
@@ -38,18 +38,18 @@ const thoughtController = {
                 res.sendStatus(400);
             });
     },
-    createThought({
+    createThought(
         body
-    }, res) {
+    , res) {
         Thoughts.create(body)
             .then(dbThoughtData => res.json(dbThoughtData))
             .catch(err => res.status(400).json(err));
             
     },
-    updateThought({
+    updateThought(
         params,
         body
-    }, res) {
+    , res) {
         Thoughts.findOneAndUpdate({
                 _id: params.id
             }, body, {
@@ -66,9 +66,9 @@ const thoughtController = {
             })
             .catch(err => res.status(400).json(err));
     },
-    deleteThought({
-        params
-    }, res) {
+    deleteThought(
+        params,
+     res) {
         Thoughts.findOneAndDelete({
                 _id: params.id
             })
@@ -99,7 +99,7 @@ const thoughtController = {
               console.log(err);
               res.status(500).json(err);
             });
-        },
+    },
       
     
     deleteReaction(req,res) {
@@ -107,7 +107,7 @@ const thoughtController = {
             { _id: req.params.thoughtId },
             { $pull: { reactions: { reactionId: req.params.reactionId } } },
             { runValidators: true, new: true }
-          )
+        )
             .then((dbThoughtData) => {
               if (!dbThoughtData) {
                 return res.status(404).json({ message: 'No reaction with this id!' });
@@ -118,11 +118,10 @@ const thoughtController = {
               console.log(err);
               res.status(500).json(err);
             });
-        },
-    };
+    }
+    
       
 
-    
 
-
+}
 module.exports = thoughtController;
