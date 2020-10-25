@@ -22,10 +22,9 @@ const thoughtController = {
             });
     },
     getThoughtsById(
-        params
-    , res) {
+        req, res) {
         Thoughts.findOne({
-                _id: params.id
+                _id: req.params.id
             })
             // .populate({
             //     path: 'comments',
@@ -39,21 +38,20 @@ const thoughtController = {
             });
     },
     createThought(
-        body
-    , res) {
-        Thoughts.create(body)
+     req, res) {
+        Thoughts.create(req.body)
             .then(dbThoughtData => res.json(dbThoughtData))
             .catch(err => res.status(400).json(err));
             
     },
     updateThought(
-        params,
-        body
-    , res) {
-        Thoughts.findOneAndUpdate({
-                _id: params.id
-            }, body, {
-                new: true
+        req, res) {
+        Thoughts.findOneAndUpdate(
+            {
+                _id: req.params.id
+            }, 
+            {
+                $set: req.body
             })
             .then(dbThoughtData => {
                 if (!dbThoughtData) {
@@ -67,10 +65,9 @@ const thoughtController = {
             .catch(err => res.status(400).json(err));
     },
     deleteThought(
-        params,
-     res) {
+        req, res) {
         Thoughts.findOneAndDelete({
-                _id: params.id
+                _id: req.params.id
             })
             .then(dbThoughtData => {
                 if (!dbThoughtData) {
@@ -83,9 +80,10 @@ const thoughtController = {
             })
             .catch(err => res.status(400).json(err));
     },
-    createReaction(req, res){
+    addReaction(req, res){
+        console.log(req.body)
         Thoughts.findOneAndUpdate(
-            { _id: req.params.thoughtId },
+            { _id: req.params.id },
             { $addToSet: { reactions: req.body } },
             { runValidators: true, new: true }
           )
